@@ -1,0 +1,67 @@
+{
+  "scope": "Review sketch: scalar mathematics, JavaScript parsing, DOM-fixture state transitions and static packaging checks",
+  "geometrySI": {
+    "wavelength": 5.5e-7,
+    "width": 0.00003,
+    "spacing": 0.00015,
+    "distance": 2
+  },
+  "reference": "Original two-slit coherent on-axis intensity; fixed for both conditions",
+  "openingPrediction": {
+    "markedPositionMillimetres": 3.666666666666667,
+    "bothOpen": {
+      "center": 1,
+      "markedSpot": 3.6276609903523915e-33
+    },
+    "rightCovered": {
+      "center": 0.25,
+      "markedSpot": 0.24188280231876974
+    }
+  },
+  "apertureComparison": {
+    "sampledStates": 242,
+    "midpointsPerSlit": 2048,
+    "maximumDifference": 7.188388856382844e-8
+  },
+  "fresnelComparison": {
+    "samplePositionsPerDistance": 121,
+    "span": "plus or minus three nominal fringe spacings",
+    "cases": [
+      {
+        "distanceMetres": 2,
+        "maximumDifference": 0.000013801053010187303,
+        "maximumQuadratureRefinement": 5.391209867422475e-8
+      },
+      {
+        "distanceMetres": 0.1,
+        "maximumDifference": 0.005508236839626202,
+        "maximumQuadratureRefinement": 5.358746735240061e-8
+      },
+      {
+        "distanceMetres": 0.01,
+        "maximumDifference": 0.4432316162649572,
+        "maximumQuadratureRefinement": 5.4898293466720816e-8
+      }
+    ]
+  },
+  "checks": {
+    "javascriptParsing": "pass",
+    "finiteInputs": "pass",
+    "limitsAndSymmetry": "pass",
+    "independentApertureComparison": "pass",
+    "quadratureRefinement": "pass",
+    "uiFixture": "pass",
+    "widgetStateRestoration": "pass",
+    "singleFileStaticPackaging": "pass"
+  },
+  "unverified": [
+    "Actual browser rendering and keyboard/touch operation",
+    "Opening the file in a browser with networking disabled",
+    "Child enjoyment and transfer of learning",
+    "Independent human physics review"
+  ],
+  "sha256": {
+    "fragment": "1c7506eb5d8e03e9d806499c6a032a82e930f8e7609618101f146106f8b159bd",
+    "standalone": "0ebfee36a254f66ae1e5677d00f1154e63ab9586cb623ac369fbdb98b7ae3d0c"
+  }
+}

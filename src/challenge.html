@@ -1,0 +1,237 @@
+<section id="slit-cover-review" data-observed="false" aria-label="Double-slit prediction challenge">
+  <style>
+    #slit-cover-review{--ink:var(--color-text-primary,#18231f);--muted:var(--color-text-secondary,#52625b);--paper:var(--color-background-primary,#fafbf8);--panel:var(--color-background-secondary,#edf2ed);--line:var(--color-border-secondary,#cdd8ce);--accent:#24664a;color:var(--ink);background:var(--paper);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;max-width:850px;margin:0 auto;padding:clamp(16px,4vw,32px);border:1px solid var(--line);border-radius:18px;box-sizing:border-box}
+    #slit-cover-review *{box-sizing:border-box}
+    #slit-cover-review h2{font-size:clamp(23px,4vw,34px);line-height:1.15;margin:5px 0 10px;letter-spacing:-.035em;font-weight:650}
+    #slit-cover-review p{margin:8px 0}
+    #slit-cover-review .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    #slit-cover-review .quiet{color:var(--muted);font-size:13px}
+    #slit-cover-review .guess-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}
+    #slit-cover-review button{font:inherit;font-size:14px;min-height:44px;padding:10px 15px;cursor:pointer;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px}
+    #slit-cover-review button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--accent)}
+    #slit-cover-review button:focus-visible,#slit-cover-review summary:focus-visible,#slit-cover-review a:focus-visible{outline:3px solid #b27b1b;outline-offset:4px}
+    #slit-cover-review .setup{display:flex;gap:16px;align-items:center;padding:12px 16px;background:var(--panel);border-radius:12px;margin-bottom:16px}
+    #slit-cover-review .setup svg{width:86px;height:88px;flex:0 0 86px}
+    #slit-cover-review .setup-copy{flex:1;min-width:0}
+    #slit-cover-review .setup-copy strong{font-size:14px}
+    #slit-cover-review .action{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+    #slit-cover-review .detector{background:#101a17;border:1px solid #30453b;border-radius:12px;padding:12px 6px 8px;overflow:hidden}
+    #slit-cover-review .detector-title{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;color:#c7d9cf;font-size:12px;padding:0 14px 8px}
+    #slit-cover-review .screen{display:block;width:100%;height:auto}
+    #slit-cover-review .readings{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+    #slit-cover-review .reading{padding:12px 16px;border:1px solid var(--line);border-radius:10px}
+    #slit-cover-review .reading span{display:block;font-size:12px;color:var(--muted)}
+    #slit-cover-review .reading strong{display:block;font-size:27px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+    #slit-cover-review .result{font-size:14px;padding:12px 16px;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 8px 8px 0;margin:12px 0}
+    #slit-cover-review [hidden]{display:none!important}
+    #slit-cover-review .next{font-size:14px}
+    #slit-cover-review .restart{font-size:12px;min-height:44px;padding:8px 10px;background:transparent;border-color:transparent;color:var(--muted)}
+    #slit-cover-review details{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+    #slit-cover-review summary{cursor:pointer;font-weight:600;font-size:14px;padding:5px 0}
+    #slit-cover-review .inspect-copy{font-size:14px;padding-top:8px}
+    #slit-cover-review .equation{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;background:var(--panel);padding:12px;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere}
+    #slit-cover-review table{border-collapse:collapse;width:100%;font-size:12px;margin:10px 0}
+    #slit-cover-review th,#slit-cover-review td{text-align:left;vertical-align:top;padding:8px 6px;border-bottom:1px solid var(--line)}
+    #slit-cover-review th{font-weight:600}
+    #slit-cover-review .failure{display:grid;grid-template-columns:1fr 1.6fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+    #slit-cover-review .failure strong{font-weight:600}
+    #slit-cover-review a{color:var(--ink);text-underline-offset:3px}
+    #slit-cover-review .legend{display:flex;gap:16px;flex-wrap:wrap;color:#c7d9cf;font-size:11px;padding:0 14px 3px}
+    #slit-cover-review .key{display:inline-block;width:18px;height:0;border-top:2px solid #8ef0b8;margin:0 5px 3px 0}
+    #slit-cover-review .key.before{border-top:2px dashed #b5c3bb}
+    @media(max-width:480px){#slit-cover-review .setup{flex-wrap:wrap;gap:10px}#slit-cover-review .action{width:100%}#slit-cover-review .reading{padding:10px}#slit-cover-review .failure{grid-template-columns:1fr;gap:4px}}
+    @media(prefers-color-scheme:dark){#slit-cover-review{--accent:#397354}}
+  </style>
+
+  <div class="eyebrow">Double slit · first activity sketch</div>
+  <h2>What happens if we cover a slit?</h2>
+  <p>Watch the marked dark stripe. Make a guess, then try it.</p>
+  <div class="guess-row" role="group" aria-label="Predict what happens at the marked dark stripe">
+    <button type="button" data-guess="dark" aria-pressed="false">It stays dark</button>
+    <button type="button" data-guess="bright" aria-pressed="false">It gets brighter</button>
+    <button type="button" data-guess="unsure" aria-pressed="false">Not sure yet</button>
+  </div>
+
+  <div class="setup">
+    <svg viewBox="0 0 86 88" role="img" aria-label="Barrier seen from the front, with two open slits" data-barrier>
+      <rect x="7" y="3" width="72" height="64" rx="6" fill="#24382f"/>
+      <rect x="25" y="14" width="7" height="43" rx="1" fill="#8ef0b8"/>
+      <rect x="54" y="14" width="7" height="43" rx="1" fill="#8ef0b8"/>
+      <rect x="49" y="8" width="17" height="55" rx="2" fill="#9aa49d" data-cover hidden/>
+      <text x="28.5" y="81" text-anchor="middle" font-size="10" fill="currentColor">L</text>
+      <text x="57.5" y="81" text-anchor="middle" font-size="10" fill="currentColor">R</text>
+    </svg>
+    <div class="setup-copy"><strong data-setup-label>Both slits open</strong><p class="quiet">Slits shown from the front.<br>The light source stays the same.</p></div>
+    <button type="button" class="action" data-toggle aria-pressed="false">Cover the right slit</button>
+  </div>
+
+  <div class="detector">
+    <div class="detector-title"><span>Light on the screen</span><span>Same brightness scale throughout</span></div>
+    <svg class="screen" viewBox="0 0 720 240" role="img" aria-labelledby="slit-review-plot-title slit-review-plot-desc">
+      <title id="slit-review-plot-title">Screen pattern and relative-intensity curve</title>
+      <desc id="slit-review-plot-desc" data-plot-description>Both slits open. The marked point at 3.67 millimetres is dark. The center is at 100 percent of the reference intensity.</desc>
+      <defs><linearGradient id="slit-review-pattern" x1="0" x2="1" data-gradient></linearGradient></defs>
+      <rect x="40" y="8" width="640" height="59" rx="3" fill="url(#slit-review-pattern)"/>
+      <text x="40" y="93" fill="#c7d9cf" font-size="11">Intensity / original bright center</text>
+      <line x1="40" y1="108" x2="680" y2="108" stroke="#35483d" stroke-dasharray="3 5"/>
+      <line x1="40" y1="210" x2="680" y2="210" stroke="#53665b"/>
+      <text x="34" y="113" text-anchor="end" fill="#c7d9cf" font-size="10">1</text>
+      <text x="34" y="214" text-anchor="end" fill="#c7d9cf" font-size="10">0</text>
+      <path data-before-path fill="none" stroke="#b5c3bb" stroke-width="1.7" stroke-dasharray="5 5" hidden/>
+      <path data-current-path fill="none" stroke="#8ef0b8" stroke-width="2.5"/>
+      <line x1="360" y1="108" x2="360" y2="210" stroke="#62756a" stroke-dasharray="2 5"/>
+      <line data-marker x1="413.333" y1="8" x2="413.333" y2="210" stroke="#f4c56a" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <circle data-dot cx="413.333" cy="210" r="4.5" fill="#f4c56a" stroke="#101a17" stroke-width="1.5"/>
+      <text x="69.09" y="232" text-anchor="middle" fill="#c7d9cf" font-size="11">−20 mm</text>
+      <text x="360" y="232" text-anchor="middle" fill="#c7d9cf" font-size="11">Center</text>
+      <text x="650.91" y="232" text-anchor="middle" fill="#c7d9cf" font-size="11">+20 mm</text>
+    </svg>
+    <div class="legend"><span><i class="key"></i>Current pattern</span><span data-before-legend hidden><i class="key before"></i>Both slits open</span><span>Gold marker: the spot to watch</span></div>
+  </div>
+
+  <div class="readings">
+    <div class="reading"><span>Marked spot · +3.67 mm</span><strong data-target-reading>0.0%</strong></div>
+    <div class="reading"><span>Bright center · 0 mm</span><strong data-center-reading>100.0%</strong></div>
+  </div>
+  <p class="quiet">100% means the original bright center. The reference never changes.</p>
+  <div class="result" data-result hidden></div>
+  <p class="next" data-next hidden>Try again while watching the <strong>center</strong>. Will covering the slit brighten that spot too?</p>
+  <p data-live class="quiet" role="status" aria-live="polite">Both slits open.</p>
+  <button type="button" class="restart" data-reset>Start over</button>
+
+  <details data-explanation>
+    <summary>Why does it happen?</summary>
+    <div class="inspect-copy">
+      <p>At the marked stripe, the two wave contributions oppose each other. Together they cancel. Covering one slit removes one contribution, so that spot lights up.</p>
+      <p>At the center, the contributions reinforce each other. Covering a slit makes <em>that</em> spot dimmer. Blocking light changes the pattern; it does not brighten every part of the screen.</p>
+      <p>Under the uniform illumination used here, covering half the aperture lets half as much total power through. The numbers above describe intensity at individual points.</p>
+    </div>
+  </details>
+
+  <details data-inspect>
+    <summary>Inspect the physics</summary>
+    <div class="inspect-copy">
+      <p><strong>Fixed experiment:</strong> wavelength λ = 550 nm; each slit width a = 30 μm; center separation d = 150 μm; screen distance L = 2 m.</p>
+      <p>Equal rectangular slits, a coherent plane wave, matched polarization, and classical scalar paraxial far-field propagation. Slit heights are taken as identical; this is the horizontal profile through the pattern.</p>
+      <div class="equation">β = π a x / (λ L)       α = π d x / (λ L)
+sinc(β) = sin(β) / β, with sinc(0) = 1
+
+Both open:   I / I₀ = sinc²(β) cos²(α)
+One covered: I / I₀ = ¼ sinc²(β)
+
+I₀ is the two-slit on-axis intensity, fixed for both cases.
+At x = λL/(2d) = 3.6667 mm:
+Both open → 0; one covered → 0.2418828.</div>
+      <p><strong>One approximation has already failed a check.</strong> Moving this screen much closer while keeping the far-field formula gives a different profile from a paraxial Fresnel integral. This sketch keeps L fixed.</p>
+      <table>
+        <thead><tr><th>Screen distance</th><th>Max. absolute difference in I / I₀</th></tr></thead>
+        <tbody><tr><td>2 m</td><td>0.000014</td></tr><tr><td>0.10 m</td><td>0.005508</td></tr><tr><td>0.01 m</td><td>0.443232</td></tr></tbody>
+      </table>
+      <p class="quiet">Computed at 121 positions over ±3 nominal fringe spacings for each distance. These compare two scalar approximations; they are not optical measurements or full electromagnetic validation.</p>
+      <p class="quiet">Foundation: <a href="https://openstax.org/books/university-physics-volume-3/pages/4-3-double-slit-diffraction" target="_blank" rel="noopener noreferrer">OpenStax: double-slit diffraction</a>. The explanation needed to use this sketch is included locally.</p>
+    </div>
+  </details>
+
+  <details data-critique>
+    <summary>What could make this a bad activity?</summary>
+    <div class="inspect-copy">
+      <div class="failure"><strong>The display invents a surprise.</strong><span>Keep exposure and the intensity reference fixed. Check the blocked and open fields independently. That mathematical check passes at this geometry.</span></div>
+      <div class="failure"><strong>A child learns “blocking makes brighter.”</strong><span>Ask for a new prediction at the center. The result reverses there. Whether this prompt helps requires a learner trial.</span></div>
+      <div class="failure"><strong>The marker is too abstract.</strong><span>The same marker links the stripe, graph, and numerical reading. A child should be able to point to the spot without coaching; that is still untested.</span></div>
+      <div class="failure"><strong>The expert view is decorative.</strong><span>Supply exact geometry, normalization, an independent aperture calculation, and a case where the approximation fails. A technical reader should be able to reproduce and challenge them.</span></div>
+      <p class="quiet">This is a review sketch. Browser usability, child enjoyment, and learning have not been established.</p>
+    </div>
+  </details>
+
+  <script>
+  (() => {
+    'use strict';
+    /* optics:start */
+    const geometry = Object.freeze({wavelength:550e-9,width:30e-6,spacing:150e-6,distance:2});
+    function sinc(value) {
+      if (!Number.isFinite(value)) throw new RangeError('sinc requires a finite input');
+      return Math.abs(value) < 1e-6 ? 1-value*value/6+value**4/120 : Math.sin(value)/value;
+    }
+    function intensity(x, covered) {
+      if (!Number.isFinite(x) || typeof covered !== 'boolean') throw new RangeError('Invalid experiment state');
+      const beta = Math.PI*geometry.width*x/(geometry.wavelength*geometry.distance);
+      const alpha = Math.PI*geometry.spacing*x/(geometry.wavelength*geometry.distance);
+      return sinc(beta)**2 * (covered ? 0.25 : Math.cos(alpha)**2);
+    }
+    function displayColor(value) {
+      if (!Number.isFinite(value) || value<0 || value>1) throw new RangeError('Intensity outside display range');
+      const encode = v => Math.round(255*(v<=0.0031308 ? 12.92*v : 1.055*v**(1/2.4)-0.055));
+      return 'rgb('+[0.2,1,0.58].map(c=>encode(c*value)).join(',')+')';
+    }
+    const markedX = geometry.wavelength*geometry.distance/(2*geometry.spacing);
+    /* optics:end */
+
+    const root = document.getElementById('slit-cover-review');
+    if (!root) return;
+    const find = selector => root.querySelector(selector);
+    const hide = (selector, hidden) => find(selector).toggleAttribute('hidden',hidden);
+    const guesses = Array.from(root.querySelectorAll('[data-guess]'));
+    const state = {covered:false,guess:null,observed:false};
+    const stored = window.openai && window.openai.widgetState;
+    if (stored && stored.model==='slit-cover-review-v1') {
+      state.covered=stored.covered===true;
+      state.observed=stored.observed===true || state.covered;
+      state.guess=['dark','bright','unsure'].includes(stored.guess) ? stored.guess : null;
+    }
+    const span=0.022;
+    const screenX = x => 40+640*(x+span)/(2*span);
+    const screenY = i => 210-102*i;
+    function curve(covered) {
+      const points=[];
+      for(let j=0;j<=640;j++) {
+        const x=-span+2*span*j/640;
+        points.push((j?'L':'M')+(40+j).toFixed(2)+','+screenY(intensity(x,covered)).toFixed(3));
+      }
+      return points.join(' ');
+    }
+    function save() {
+      if (window.openai && typeof window.openai.setWidgetState==='function') {
+        window.openai.setWidgetState({model:'slit-cover-review-v1',...state});
+      }
+    }
+    function render() {
+      const target=intensity(markedX,state.covered), center=intensity(0,state.covered);
+      const percent = i => (100*i).toFixed(1)+'%';
+      find('[data-current-path]').setAttribute('d',curve(state.covered));
+      find('[data-before-path]').setAttribute('d',curve(false));
+      hide('[data-before-path]',!state.covered);
+      hide('[data-before-legend]',!state.covered);
+      const stops=[];
+      for(let j=0;j<=640;j++) {
+        const x=-span+2*span*j/640;
+        stops.push('<stop offset="'+(100*j/640).toFixed(4)+'%" stop-color="'+displayColor(intensity(x,state.covered))+'"/>');
+      }
+      find('[data-gradient]').innerHTML=stops.join('');
+      find('[data-marker]').setAttribute('x1',screenX(markedX));
+      find('[data-marker]').setAttribute('x2',screenX(markedX));
+      find('[data-dot]').setAttribute('cx',screenX(markedX));
+      find('[data-dot]').setAttribute('cy',screenY(target));
+      hide('[data-cover]',!state.covered);
+      find('[data-barrier]').setAttribute('aria-label',state.covered?'Barrier seen from the front, with the right slit covered':'Barrier seen from the front, with two open slits');
+      find('[data-setup-label]').textContent=state.covered?'Right slit covered':'Both slits open';
+      find('[data-toggle]').textContent=state.covered?'Open the right slit':'Cover the right slit';
+      find('[data-toggle]').setAttribute('aria-pressed',String(state.covered));
+      find('[data-target-reading]').textContent=percent(target);
+      find('[data-center-reading]').textContent=percent(center);
+      const description=(state.covered?'Right slit covered.':'Both slits open.')+' Marked spot: '+percent(target)+'. Center: '+percent(center)+'.';
+      find('[data-live]').textContent=description;
+      find('[data-plot-description]').textContent=description+' Values use the original bright center as a fixed reference.';
+      guesses.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.guess===state.guess)));
+      root.dataset.observed=String(state.observed);
+      hide('[data-result]',!state.observed);
+      hide('[data-next]',!state.observed);
+      const feedback=state.guess==='bright'?'Your prediction matches this case. ':state.guess==='dark'?'The marked spot lights up in this case. ':'';
+      find('[data-result]').textContent=state.covered ? feedback+'Marked spot: 0 → 24.2%. Center: 100 → 25%. One spot gets brighter while another gets dimmer.' : 'Both slits are open again. Watch the center this time, make a prediction, then cover the slit.';
+    }
+    guesses.forEach(button=>button.addEventListener('click',()=>{state.guess=button.dataset.guess;render();save();}));
+    find('[data-toggle]').addEventListener('click',()=>{state.covered=!state.covered;state.observed=true;render();save();});
+    find('[data-reset]').addEventListener('click',()=>{state.covered=false;state.observed=false;state.guess=null;render();save();});
+    render();
+  })();
+  </script>
+</section>
