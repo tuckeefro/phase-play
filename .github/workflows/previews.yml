@@ -27,7 +27,9 @@ jobs:
       - name: Capture the app and record browser checks
         id: browser
         continue-on-error: true
-        run: python3 tools/check-browser.py
+        run: |
+          python3 -c "import shutil; print({name: shutil.which(name) for name in ('chromium', 'google-chrome')})"
+          python3 tools/check-browser.py
 
       - name: Verify that the PNGs show the tested app
         shell: bash
@@ -39,6 +41,8 @@ jobs:
           import struct
 
           report = json.loads(Path("docs/browser/results.json").read_text())
+          if report.get("status") != "checks_completed":
+              print(json.dumps(report, indent=2), flush=True)
           assert report["status"] == "checks_completed", "Browser capture did not complete"
           assert report["unmodifiedFileInitialRender"], "The unmodified app did not render"
           source_hash = hashlib.sha256(Path("index.html").read_bytes()).hexdigest()
