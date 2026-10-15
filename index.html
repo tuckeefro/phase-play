@@ -4,15 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Cover a slit — double-slit review sketch</title>
+<title>Phase Play — Double-Slit Light Experiment | Tucker Vana</title>
+<meta name="description" content="An offline double-slit light experiment by Tucker Vana. Make a prediction, cover one opening, and compare what changes. Includes model checks and limits.">
+<meta name="author" content="Tucker Vana">
 <style>body{margin:0;padding:clamp(8px,2vw,24px);background:#e6ece6}button,summary{-webkit-tap-highlight-color:transparent}</style>
 </head>
 <body>
+<main>
 <section id="slit-cover-review" data-observed="false" aria-label="Double-slit prediction challenge">
   <style>
     #slit-cover-review{--ink:var(--color-text-primary,#18231f);--muted:var(--color-text-secondary,#52625b);--paper:var(--color-background-primary,#fafbf8);--panel:var(--color-background-secondary,#edf2ed);--line:var(--color-border-secondary,#cdd8ce);--accent:#24664a;color:var(--ink);background:var(--paper);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;max-width:850px;margin:0 auto;padding:clamp(16px,4vw,32px);border:1px solid var(--line);border-radius:18px;box-sizing:border-box}
     #slit-cover-review *{box-sizing:border-box}
-    #slit-cover-review h2{font-size:clamp(23px,4vw,34px);line-height:1.15;margin:5px 0 10px;letter-spacing:-.035em;font-weight:650}
+    #slit-cover-review h1{font-size:clamp(23px,4vw,34px);line-height:1.15;margin:5px 0 10px;letter-spacing:-.035em;font-weight:650}
     #slit-cover-review p{margin:8px 0}
     #slit-cover-review .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
     #slit-cover-review .quiet{color:var(--muted);font-size:13px}
@@ -27,7 +30,18 @@
     #slit-cover-review .action{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
     #slit-cover-review .detector{background:#101a17;border:1px solid #30453b;border-radius:12px;padding:12px 6px 8px;overflow:hidden}
     #slit-cover-review .detector-title{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;color:#c7d9cf;font-size:12px;padding:0 14px 8px}
-    #slit-cover-review .screen{display:block;width:100%;height:auto}
+    #slit-cover-review .plot-frame{position:relative}
+    #slit-cover-review .screen{display:block;width:100%;height:220px}
+    #slit-cover-review .screen path,#slit-cover-review .screen line,#slit-cover-review .screen circle{vector-effect:non-scaling-stroke}
+    #slit-cover-review .plot-caption{position:absolute;left:5.556%;right:4%;top:76px;color:#c7d9cf;font-size:12px;line-height:1.25;pointer-events:none}
+    #slit-cover-review .y-label{position:absolute;left:4.722%;transform:translate(-100%,-50%);color:#c7d9cf;font-size:12px;line-height:1}
+    #slit-cover-review .y-label.top{top:108px}
+    #slit-cover-review .y-label.bottom{top:210px}
+    #slit-cover-review .axis-labels{height:26px;position:relative;color:#c7d9cf;font-size:13px;line-height:1.4}
+    #slit-cover-review .axis-labels span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+    #slit-cover-review .axis-labels span:nth-child(1){left:9.596%}
+    #slit-cover-review .axis-labels span:nth-child(2){left:50%}
+    #slit-cover-review .axis-labels span:nth-child(3){left:90.404%}
     #slit-cover-review .readings{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
     #slit-cover-review .reading{padding:12px 16px;border:1px solid var(--line);border-radius:10px}
     #slit-cover-review .reading span{display:block;font-size:12px;color:var(--muted)}
@@ -53,9 +67,10 @@
     @media(prefers-color-scheme:dark){#slit-cover-review{--accent:#397354}}
   </style>
 
-  <div class="eyebrow">Double slit · first activity sketch</div>
-  <h2>What happens if we cover a slit?</h2>
-  <p>Watch the marked dark stripe. Make a guess, then try it.</p>
+  <div class="eyebrow">Phase Play · Double-slit light experiment</div>
+  <h1>What happens if we cover a slit?</h1>
+  <p>Light passes through two narrow openings and makes bright and dark stripes on a screen. Those openings are called <strong>slits</strong>.</p>
+  <p>Watch the marked dark stripe. What happens there if we cover one opening?</p>
   <div class="guess-row" role="group" aria-label="Predict what happens at the marked dark stripe">
     <button type="button" data-guess="dark" aria-pressed="false">It stays dark</button>
     <button type="button" data-guess="bright" aria-pressed="false">It gets brighter</button>
@@ -75,27 +90,28 @@
     <button type="button" class="action" data-toggle aria-pressed="false">Cover the right slit</button>
   </div>
 
+  <div class="result" data-result hidden></div>
+
   <div class="detector">
     <div class="detector-title"><span>Light on the screen</span><span>Same brightness scale throughout</span></div>
-    <svg class="screen" viewBox="0 0 720 240" role="img" aria-labelledby="slit-review-plot-title slit-review-plot-desc">
+    <div class="plot-frame">
+    <svg class="screen" viewBox="0 0 720 220" preserveAspectRatio="none" role="img" aria-labelledby="slit-review-plot-title slit-review-plot-desc">
       <title id="slit-review-plot-title">Screen pattern and relative-intensity curve</title>
       <desc id="slit-review-plot-desc" data-plot-description>Both slits open. The marked point at 3.67 millimetres is dark. The center is at 100 percent of the reference intensity.</desc>
       <defs><linearGradient id="slit-review-pattern" x1="0" x2="1" data-gradient></linearGradient></defs>
       <rect x="40" y="8" width="640" height="59" rx="3" fill="url(#slit-review-pattern)"/>
-      <text x="40" y="93" fill="#c7d9cf" font-size="11">Intensity / original bright center</text>
       <line x1="40" y1="108" x2="680" y2="108" stroke="#35483d" stroke-dasharray="3 5"/>
       <line x1="40" y1="210" x2="680" y2="210" stroke="#53665b"/>
-      <text x="34" y="113" text-anchor="end" fill="#c7d9cf" font-size="10">1</text>
-      <text x="34" y="214" text-anchor="end" fill="#c7d9cf" font-size="10">0</text>
       <path data-before-path fill="none" stroke="#b5c3bb" stroke-width="1.7" stroke-dasharray="5 5" hidden/>
       <path data-current-path fill="none" stroke="#8ef0b8" stroke-width="2.5"/>
       <line x1="360" y1="108" x2="360" y2="210" stroke="#62756a" stroke-dasharray="2 5"/>
       <line data-marker x1="413.333" y1="8" x2="413.333" y2="210" stroke="#f4c56a" stroke-width="1.5" stroke-dasharray="4 4"/>
       <circle data-dot cx="413.333" cy="210" r="4.5" fill="#f4c56a" stroke="#101a17" stroke-width="1.5"/>
-      <text x="69.09" y="232" text-anchor="middle" fill="#c7d9cf" font-size="11">−20 mm</text>
-      <text x="360" y="232" text-anchor="middle" fill="#c7d9cf" font-size="11">Center</text>
-      <text x="650.91" y="232" text-anchor="middle" fill="#c7d9cf" font-size="11">+20 mm</text>
     </svg>
+    <div class="plot-caption">Light at each spot<br>1 = original bright center</div>
+    <span class="y-label top" aria-hidden="true">1</span><span class="y-label bottom" aria-hidden="true">0</span>
+    </div>
+    <div class="axis-labels" aria-label="Position on the screen"><span data-axis-label>−20 mm</span><span data-axis-label>Center</span><span data-axis-label>+20 mm</span></div>
     <div class="legend"><span><i class="key"></i>Current pattern</span><span data-before-legend hidden><i class="key before"></i>Both slits open</span><span>Gold marker: the spot to watch</span></div>
   </div>
 
@@ -104,7 +120,6 @@
     <div class="reading"><span>Bright center · 0 mm</span><strong data-center-reading>100.0%</strong></div>
   </div>
   <p class="quiet">100% means the original bright center. The reference never changes.</p>
-  <div class="result" data-result hidden></div>
   <p class="next" data-next hidden>Compare the marked spot with the <strong>center</strong>. Why did one get brighter while the other got dimmer?</p>
   <p data-live class="quiet" role="status" aria-live="polite">Both slits open.</p>
   <button type="button" class="restart" data-reset>Start over</button>
@@ -152,6 +167,8 @@ Both open → 0; one covered → 0.2418828.</div>
       <p class="quiet">This is a review sketch. Browser usability, child enjoyment, and learning have not been established.</p>
     </div>
   </details>
+
+  <footer><p class="quiet">A light experiment by <a href="https://github.com/tuckeefro" target="_blank" rel="noopener noreferrer">Tucker Vana</a>. Works offline.</p></footer>
 
   <script>
   (() => {
@@ -236,7 +253,7 @@ Both open → 0; one covered → 0.2418828.</div>
       hide('[data-result]',!state.observed);
       hide('[data-next]',!state.observed);
       const feedback=state.guess==='bright'?'Your prediction matches this case. ':state.guess==='dark'?'The marked spot lights up in this case. ':'';
-      find('[data-result]').textContent=state.covered ? feedback+'Marked spot: 0 → 24.2%. Center: 100 → 25%. One spot gets brighter while another gets dimmer.' : 'Both slits are open again. Watch the center this time, make a prediction, then cover the slit.';
+      find('[data-result]').textContent=state.covered ? 'The marked dark spot got brighter. The center got dimmer. '+feedback : 'Both slits are open again. The marked spot is dark and the center is back at its original brightness. Cover the slit again to compare.';
     }
     guesses.forEach(button=>button.addEventListener('click',()=>{state.guess=button.dataset.guess;render();save();}));
     find('[data-toggle]').addEventListener('click',()=>{state.covered=!state.covered;state.observed=true;render();save();});
@@ -246,5 +263,6 @@ Both open → 0; one covered → 0.2418828.</div>
   </script>
 </section>
 
+</main>
 </body>
 </html>

@@ -44,11 +44,15 @@ DRIVER = r"""
   const reset=state();
   const guessesCleared=Array.from(root.querySelectorAll('[data-guess]')).every(b=>b.getAttribute('aria-pressed')==='false');
   if(SCREENSHOT_STATE==='covered')find('[data-toggle]').click();
-  const axes=Array.from(root.querySelectorAll('.screen text')).filter(t=>t.getAttribute('y')==='232').map(t=>{
-    const transform=t.getScreenCTM();
+  const axes=Array.from(root.querySelectorAll('[data-axis-label], .screen text[y="232"]')).map(t=>{
+    const transform=typeof t.getScreenCTM==='function' ? t.getScreenCTM() : null;
     const r=t.getBoundingClientRect();
-    return {text:t.textContent,fontPixels:parseFloat(getComputedStyle(t).fontSize)*Math.hypot(transform.a,transform.b),left:r.left,right:r.right};
+    return {text:t.textContent,fontPixels:parseFloat(getComputedStyle(t).fontSize)*(transform ? Math.hypot(transform.a,transform.b) : 1),left:r.left,right:r.right,width:r.width};
   });
+  const plotBounds=find('.detector').getBoundingClientRect();
+  const readableAxes=axes.length===3 &&
+    axes.map(t=>t.text).join('|')==='−20 mm|Center|+20 mm' &&
+    axes.every(t=>t.fontPixels>=12 && t.width>0 && t.left>=plotBounds.left && t.right<=plotBounds.right);
   const report={
     viewportWidth:innerWidth,
     sourceContext:'Exact app HTML in a local srcdoc frame; only the diagnostic driver is added',
@@ -64,7 +68,7 @@ DRIVER = r"""
       reopenValues:reopened.target==='0.0%'&&reopened.center==='100.0%'&&!reopened.coverVisible,
       resetState:!reset.resultVisible&&guessesCleared,
       predictionSelected,explanationOpened,
-      readableAxisLabels:axes.every(t=>t.fontPixels>=10.5),
+      readableAxisLabels:readableAxes,
       noHorizontalOverflow:document.documentElement.scrollWidth<=innerWidth
     }
   };

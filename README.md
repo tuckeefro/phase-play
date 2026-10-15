@@ -2,18 +2,22 @@
 
 **Can covering a slit make a dark stripe brighter?**
 
-Make a guess, cover the slit, and watch the marked stripe and the center.
-Same light source. Same brightness scale. One spot gets brighter while the
-other gets dimmer.
+An offline double-slit light experiment by [Tucker Vana](https://github.com/tuckeefro).
+
+Light goes through two narrow openings and makes bright and dark stripes on a
+screen. Those openings are called slits. Make a guess, cover one, and watch the
+marked stripe and the center. Same light source. Same brightness scale.
 
 I want a kid to mess with this and someone who knows optics to pick it apart.
 The first milestone is poking holes in it. More controls can wait.
 
-## Run it
+## Open it
 
-Download or clone this repository and open **index.html** in a browser.
-The app is one self-contained file and runs offline. No account, local server,
-runtime installation, or hosting bill.
+1. [Download the project ZIP](https://github.com/tuckeefro/phase-play/archive/refs/heads/main.zip) and extract it.
+2. Open **index.html** in a browser.
+
+You can keep just that HTML file. Everything the experiment needs is inside it:
+no account, local server, installation, or hosting bill. It works offline.
 
 ## Preview
 
@@ -25,11 +29,25 @@ runtime installation, or hosting bill.
 
 ![Right slit covered: the marked spot rises to 24.2% while the center falls to 25%, using the same brightness reference.](docs/browser/desktop-covered.png)
 
+[Phone view](docs/browser/narrow-open.png)
+
+## Decisions worth checking
+
+My thing is getting hardware and software to work together: equipment
+integration, troubleshooting, and testing. Here, the work is a small simulation
+with its decisions and failures left visible.
+
+| Question | Decision and evidence |
+| --- | --- |
+| Is the display making up the surprise? | Keep the brightness reference fixed. Check both conditions against a separate calculation across the openings. [Calculation and limits](docs/EVIDENCE.md#e01-does-the-opening-surprise-follow-from-the-field-calculation). |
+| Can we put the screen anywhere? | Keep it at 2 m. At 1 cm, the far-field model disagrees substantially with a Fresnel calculation. [Comparison](docs/EVIDENCE.md#e02-can-we-move-the-screen-closer-and-keep-the-same-formula). |
+| Does fitting on a phone mean someone can read it? | The first capture had 3.68-pixel graph labels. Labels now use ordinary page text, and the browser check measures their size and visibility. [Current browser measurements](docs/browser/results.json). |
+
 ## Poke holes in it
 
-The calculation checks and automated desktop Chrome checks pass. The narrow
-capture exposed plot labels that are too small to read. No learner trial has
-been recorded yet.
+The numerical and packaged-source checks pass. The updated browser captures
+are being checked on the review branch before this pass reaches main.
+No learner trial has been recorded.
 
 The next question is whether someone can explain why the two spots changed
 in opposite directions. Clicking the button or remembering a number won't
@@ -48,16 +66,15 @@ Intensity uses the original two-slit bright center as a fixed reference.
 
 ## Work on it
 
-Edit **src/challenge.html**, then rebuild **index.html**. Development commands
-use Node.js with no third-party dependencies:
+Edit **src/challenge.html**, then rebuild **index.html**. These optional
+development commands use Node.js with no third-party dependencies:
 
 ```bash
 node tools/build.mjs
 node tools/verify.mjs
 ```
 
-The verifier checks the calculations, simulated controls, and packaged source.
-[Saved numerical results](docs/verification.json) include the HTML source hashes.
+[Saved numerical results](docs/verification.json) identify the checked source.
 
 Browser checks and PNG captures use Python's standard library and an installed
 Chromium or Google Chrome browser:
@@ -66,8 +83,8 @@ Chromium or Google Chrome browser:
 python3 tools/check-browser.py
 ```
 
-The browser checker currently reports the narrow-screen label failure.
-The [capture workflow](.github/workflows/previews.yml) regenerates the PNGs when
-the app or checker changes.
+The [capture workflow](.github/workflows/previews.yml) checks the standalone
+build and calculations, tests the controls, measures graph labels at 320 and
+1,024 pixels, and regenerates the PNGs. Every recorded browser check must pass.
 
 *Built with assistance from Codex.*
