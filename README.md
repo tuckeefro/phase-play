@@ -1,10 +1,19 @@
 # Phase Play
 
-A small double-slit experiment you can open from disk.
+**Can covering a slit make a dark stripe brighter?**
 
-Make a prediction about a dark stripe, cover one slit, and compare what happens
-there with what happens at the bright center. Open the explanation to inspect
-the model, its assumptions, and a case where the approximation stops working.
+Make a guess, cover the slit, and watch the marked stripe and the center.
+Same light source. Same brightness scale. One spot gets brighter while the
+other gets dimmer.
+
+I want a kid to mess with this and someone who knows optics to pick it apart.
+The first milestone is poking holes in it. More controls can wait.
+
+## Run it
+
+Download or clone this repository and open **index.html** in a browser.
+The app is one self-contained file and runs offline. No account, local server,
+runtime installation, or hosting bill.
 
 ## Preview
 
@@ -16,67 +25,49 @@ the model, its assumptions, and a case where the approximation stops working.
 
 ![Right slit covered: the marked spot rises to 24.2% while the center falls to 25%, using the same brightness reference.](docs/browser/desktop-covered.png)
 
-## Run it
+## Poke holes in it
 
-Download or clone this repository and open **index.html** in a browser.
-The application is one self-contained file. It needs no account, local server,
-runtime installation, internet connection, or paid hosting.
+The calculation checks and automated desktop Chrome checks pass. The narrow
+capture exposed plot labels that are too small to read. No learner trial has
+been recorded yet.
 
-## Current stage
+The next question is whether someone can explain why the two spots changed
+in opposite directions. Clicking the button or remembering a number won't
+tell us that.
 
-This is the first activity sketch. The first milestone is to challenge the
-physics and teaching approach before adding more features.
+[What could fool us, and how to catch it](docs/REVIEW.md) ·
+[What was checked and what remains open](docs/EVIDENCE.md)
 
-The scalar calculations and simulated control-state checks pass. The browser
-check also captured the app and exercised controls in Chrome with network
-hostnames blocked. At 320 pixels, plot-axis labels are too small. Physical
-keyboard/touch operation, child enjoyment, learning, and an independent human
-physics review remain unverified.
+## The physics
 
-See [the evidence log](docs/EVIDENCE.md) for what was observed and what each
-check establishes. [The review](docs/REVIEW.md) records the failure cases and
-next checks.
+The app uses classical scalar Fraunhofer diffraction for two equal,
+finite-width slits with coherent illumination and matched polarization.
+Intensity uses the original two-slit bright center as a fixed reference.
 
-## Check or edit it
+[Equations, assumptions, and where the approximation breaks](docs/MODEL.md)
 
-Optional development commands, using Node.js and no third-party dependencies:
+## Work on it
 
-    node tools/build.mjs
-    node tools/verify.mjs
+Edit **src/challenge.html**, then rebuild **index.html**. Development commands
+use Node.js with no third-party dependencies:
 
-Edit **src/challenge.html**, then build to update the distributed index.html.
-Verification checks that the distributed file contains the exact source.
+```bash
+node tools/build.mjs
+node tools/verify.mjs
+```
 
-The checks compare the embedded formula with an independent finite-aperture
-integral, reproduce a far-field versus Fresnel comparison, and exercise state
-transitions in a DOM fixture. That fixture does not provide browser rendering
-or accessibility evidence. [Saved results](docs/verification.json) identify
-the source and distributed file by SHA-256.
+The verifier checks the calculations, simulated controls, and packaged source.
+[Saved numerical results](docs/verification.json) include the HTML source hashes.
 
-An optional browser check uses Python's standard library and an installed
+Browser checks and PNG captures use Python's standard library and an installed
 Chromium or Google Chrome browser:
 
-    python3 tools/check-browser.py
+```bash
+python3 tools/check-browser.py
+```
 
-It opens the unmodified file directly, exercises controls in controlled-width
-frames containing the same app HTML, and saves results and screenshots under
-docs/browser. It uses a fresh temporary browser profile with network hostnames
-blocked. The [saved browser results](docs/browser/results.json) record the
-browser version, source hash, control checks, and measured layout. The current
-320-pixel case fails the axis-label readability check.
-
-The [PNG capture workflow](.github/workflows/previews.yml) uses Google Chrome
-and commits the images and report to docs/browser when the app or checker changes.
-
-## Physics
-
-This is classical scalar wave optics with equal finite-width rectangular
-slits, uniform coherent illumination, matched polarization, and a fixed
-far-field geometry. Intensity uses the original two-slit bright center as a
-constant reference.
-
-The underlying effect is established physics. The activity, explanation,
-implementation, and reproducible checks are the work being evaluated here.
-See [the model](docs/MODEL.md) for the equations and limits.
+The browser checker currently reports the narrow-screen label failure.
+The [capture workflow](.github/workflows/previews.yml) regenerates the PNGs when
+the app or checker changes.
 
 *Built with assistance from Codex.*

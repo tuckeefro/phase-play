@@ -47,8 +47,8 @@ with the distributed HTML. Reject nonfinite model inputs and invalid states.
 **Result:** these checks pass. The packaged file contains the exact source,
 has one embedded script, and references no external runtime assets.
 
-**Limit:** this is static packaging and simulated state evidence. A real browser
-must still establish rendering, keyboard/touch operation, and offline use.
+**Limit:** static packaging and simulated state cannot establish browser
+rendering or physical input behavior. E07 records subsequent browser observations.
 
 ## E04: Is our proposed learning check actually a new prediction?
 
@@ -77,19 +77,12 @@ checks passed in that execution.
 **Limit:** these are command-line and simulated-state observations. They do
 not establish browser operation or learning.
 
-## E06: Did we obtain real browser evidence?
+## E06: Initial browser startup failure
 
-**Attempt:** run an unmodified local index.html in isolated headless Chromium,
-then exercise the same app HTML in 1,024-pixel and 320-pixel frames. Use a new
-temporary profile and block network hostnames for the browser process.
-
-**Observed:** Chromium was denied a socket operation at startup in this
-execution environment. No application checks completed and no valid screenshot
-was obtained.
-
-**Decision:** preserve the optional checker and its process-failure diagnostic.
-Re-run it in an environment that permits Chromium. Do not treat the failed
-launch as an application failure or claim a browser pass from the DOM fixture.
+The first local Chromium attempt stopped before app rendering because the
+execution environment denied a socket operation. It produced no application
+checks or valid screenshots. The [original diagnostic](https://github.com/tuckeefro/phase-play/blob/4c5567b0e2ce94570472620e2a16036ae310b563/docs/browser/results.json)
+is preserved in Git history. The later successful capture is recorded below.
 
 ## E07: Captured previews and a narrow-screen failure
 
