@@ -1,21 +1,21 @@
 <section id="slit-cover-review" data-observed="false" aria-label="Double-slit prediction challenge">
   <style>
-    #slit-cover-review{--ink:var(--color-text-primary,#18231f);--muted:var(--color-text-secondary,#52625b);--paper:var(--color-background-primary,#fafbf8);--panel:var(--color-background-secondary,#edf2ed);--line:var(--color-border-secondary,#cdd8ce);--accent:#24664a;color:var(--ink);background:var(--paper);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;max-width:850px;margin:0 auto;padding:clamp(16px,4vw,32px);border:1px solid var(--line);border-radius:18px;box-sizing:border-box}
+    #slit-cover-review{--ink:var(--color-text-primary,#263d49);--muted:var(--color-text-secondary,#5c655f);--paper:var(--color-background-primary,#f7f2e8);--panel:var(--color-background-secondary,#eee7d7);--line:var(--color-border-secondary,#c9c1af);--accent:#285b70;color:var(--ink);background:var(--paper);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;max-width:850px;margin:0 auto;padding:clamp(16px,4vw,32px);border:1px solid var(--line);border-radius:2px;box-sizing:border-box;box-shadow:3px 4px 0 #263d4914;background-image:linear-gradient(90deg,transparent 8px,#b56d414d 8px,#b56d414d 9px,transparent 9px)}
     #slit-cover-review *{box-sizing:border-box}
-    #slit-cover-review h1{font-size:clamp(23px,4vw,34px);line-height:1.15;margin:5px 0 10px;letter-spacing:-.035em;font-weight:650}
+    #slit-cover-review h1{font-size:clamp(23px,4vw,34px);line-height:1.15;margin:5px 0 10px;letter-spacing:-.035em;font-weight:700;font-family:Georgia,"Times New Roman",serif}
     #slit-cover-review p{margin:8px 0}
-    #slit-cover-review .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    #slit-cover-review .eyebrow{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
     #slit-cover-review .quiet{color:var(--muted);font-size:13px}
     #slit-cover-review .guess-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}
-    #slit-cover-review button{font:inherit;font-size:14px;min-height:44px;padding:10px 15px;cursor:pointer;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px}
+    #slit-cover-review button{font:inherit;font-size:14px;min-height:44px;padding:10px 15px;cursor:pointer;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:3px}
     #slit-cover-review button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--accent)}
     #slit-cover-review button:focus-visible,#slit-cover-review summary:focus-visible,#slit-cover-review a:focus-visible{outline:3px solid #b27b1b;outline-offset:4px}
-    #slit-cover-review .setup{display:flex;gap:16px;align-items:center;padding:12px 16px;background:var(--panel);border-radius:12px;margin-bottom:16px}
+    #slit-cover-review .setup{display:flex;gap:16px;align-items:center;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:2px;margin-bottom:16px}
     #slit-cover-review .setup svg{width:86px;height:88px;flex:0 0 86px}
     #slit-cover-review .setup-copy{flex:1;min-width:0}
     #slit-cover-review .setup-copy strong{font-size:14px}
     #slit-cover-review .action{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-    #slit-cover-review .detector{background:#101a17;border:1px solid #30453b;border-radius:12px;padding:12px 6px 8px;overflow:hidden}
+    #slit-cover-review .detector{background:#101a17;border:1px solid #30453b;border-radius:2px;padding:12px 6px 8px;overflow:hidden}
     #slit-cover-review .detector-title{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px;color:#c7d9cf;font-size:12px;padding:0 14px 8px}
     #slit-cover-review .plot-frame{position:relative}
     #slit-cover-review .screen{display:block;width:100%;height:220px}
@@ -30,10 +30,10 @@
     #slit-cover-review .axis-labels span:nth-child(2){left:50%}
     #slit-cover-review .axis-labels span:nth-child(3){left:90.404%}
     #slit-cover-review .readings{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-    #slit-cover-review .reading{padding:12px 16px;border:1px solid var(--line);border-radius:10px}
+    #slit-cover-review .reading{padding:12px 16px;border:1px solid var(--line);border-top:2px solid var(--ink);border-radius:0}
     #slit-cover-review .reading span{display:block;font-size:12px;color:var(--muted)}
-    #slit-cover-review .reading strong{display:block;font-size:27px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.025em}
-    #slit-cover-review .result{font-size:14px;padding:12px 16px;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 8px 8px 0;margin:12px 0}
+    #slit-cover-review .reading strong{display:block;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:26px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+    #slit-cover-review .result{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.4;padding:12px 16px;border-left:3px solid #a85530;background:#f0e0b9;border-radius:0;margin:12px 0}
     #slit-cover-review [hidden]{display:none!important}
     #slit-cover-review .next{font-size:14px}
     #slit-cover-review .restart{font-size:12px;min-height:44px;padding:8px 10px;background:transparent;border-color:transparent;color:var(--muted)}
@@ -47,31 +47,53 @@
     #slit-cover-review .failure{display:grid;grid-template-columns:1fr 1.6fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
     #slit-cover-review .failure strong{font-weight:600}
     #slit-cover-review a{color:var(--ink);text-underline-offset:3px}
-    #slit-cover-review .legend{display:flex;gap:16px;flex-wrap:wrap;color:#c7d9cf;font-size:11px;padding:0 14px 3px}
+    #slit-cover-review .legend{display:flex;gap:16px;flex-wrap:wrap;color:#c7d9cf;font-size:12px;padding:0 14px 3px}
     #slit-cover-review .key{display:inline-block;width:18px;height:0;border-top:2px solid #8ef0b8;margin:0 5px 3px 0}
     #slit-cover-review .key.before{border-top:2px dashed #b5c3bb}
+    #slit-cover-review .byline{font-size:13px;color:var(--muted);margin:8px 0 14px}
+    #slit-cover-review .setup-sketch{margin:18px 0 10px;padding:12px 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    #slit-cover-review .sketch-parts{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:clamp(4px,2vw,20px);align-items:center;max-width:560px;margin:0 auto}
+    #slit-cover-review .sketch-part{text-align:center;font-size:13px;line-height:1.25}
+    #slit-cover-review .sketch-part svg{display:block;width:72px;max-width:100%;height:44px;margin:0 auto 4px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    #slit-cover-review .sketch-arrow{font-size:22px}
+    #slit-cover-review figcaption{font-family:Georgia,"Times New Roman",serif;font-size:13px;font-style:italic;color:var(--muted);margin-top:10px;text-align:center}
+    #slit-cover-review .margin-note{font-family:Georgia,"Times New Roman",serif;font-size:17px;font-style:italic;line-height:1.4;color:#824323;border-left:2px solid #b56d41;padding:2px 0 2px 12px;margin:14px 0}
+    #slit-cover-review .step-label{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;letter-spacing:.025em;text-transform:uppercase;margin:18px 0 8px;color:var(--ink)}
     @media(max-width:480px){#slit-cover-review .setup{flex-wrap:wrap;gap:10px}#slit-cover-review .action{width:100%}#slit-cover-review .reading{padding:10px}#slit-cover-review .failure{grid-template-columns:1fr;gap:4px}}
-    @media(prefers-color-scheme:dark){#slit-cover-review{--accent:#397354}}
   </style>
 
-  <div class="eyebrow">Phase Play · Double-slit light experiment</div>
+  <div class="eyebrow">Phase Play / Workshop note 01</div>
+  <p class="byline">A double-slit light experiment by <a href="https://github.com/tuckeefro" target="_blank" rel="noopener noreferrer">Tucker Vana</a></p>
   <h1>What happens if we cover a slit?</h1>
   <p>Light passes through two narrow openings and makes bright and dark stripes on a screen. Those openings are called <strong>slits</strong>.</p>
+  <figure class="setup-sketch">
+    <div class="sketch-parts">
+      <div class="sketch-part"><svg viewBox="0 0 72 44" aria-hidden="true"><rect x="8" y="12" width="30" height="20" rx="2"/><path d="M38 18h9v8h-9M51 14h14M51 22h17M51 30h14"/></svg><span>Light source</span></div>
+      <span class="sketch-arrow" aria-hidden="true">→</span>
+      <div class="sketch-part"><svg viewBox="0 0 72 44" aria-hidden="true"><rect x="22" y="4" width="28" height="36"/><path d="M31 12v20M41 12v20" stroke-width="3"/></svg><span>Two openings</span></div>
+      <span class="sketch-arrow" aria-hidden="true">→</span>
+      <div class="sketch-part"><svg viewBox="0 0 72 44" aria-hidden="true"><path d="M12 6h48v29H12zM23 35v6M49 35v6M18 41h10M44 41h10"/></svg><span>Screen</span></div>
+    </div>
+    <figcaption>Setup sketch · not to scale</figcaption>
+  </figure>
+  <p class="margin-note">One change at a time. Only the cover moves.</p>
   <p>Watch the marked dark stripe. What happens there if we cover one opening?</p>
+  <p class="step-label">01 / Make a guess</p>
   <div class="guess-row" role="group" aria-label="Predict what happens at the marked dark stripe">
     <button type="button" data-guess="dark" aria-pressed="false">It stays dark</button>
     <button type="button" data-guess="bright" aria-pressed="false">It gets brighter</button>
     <button type="button" data-guess="unsure" aria-pressed="false">Not sure yet</button>
   </div>
 
+  <p class="step-label">02 / Cover one opening</p>
   <div class="setup">
     <svg viewBox="0 0 86 88" role="img" aria-label="Barrier seen from the front, with two open slits" data-barrier>
       <rect x="7" y="3" width="72" height="64" rx="6" fill="#24382f"/>
       <rect x="25" y="14" width="7" height="43" rx="1" fill="#8ef0b8"/>
       <rect x="54" y="14" width="7" height="43" rx="1" fill="#8ef0b8"/>
       <rect x="49" y="8" width="17" height="55" rx="2" fill="#9aa49d" data-cover hidden/>
-      <text x="28.5" y="81" text-anchor="middle" font-size="10" fill="currentColor">L</text>
-      <text x="57.5" y="81" text-anchor="middle" font-size="10" fill="currentColor">R</text>
+      <text x="28.5" y="81" text-anchor="middle" font-size="12" fill="currentColor">Left</text>
+      <text x="57.5" y="81" text-anchor="middle" font-size="12" fill="currentColor">Right</text>
     </svg>
     <div class="setup-copy"><strong data-setup-label>Both slits open</strong><p class="quiet">Slits shown from the front.<br>The light source stays the same.</p></div>
     <button type="button" class="action" data-toggle aria-pressed="false">Cover the right slit</button>
@@ -79,6 +101,7 @@
 
   <div class="result" data-result hidden></div>
 
+  <p class="step-label">03 / Check the screen</p>
   <div class="detector">
     <div class="detector-title"><span>Light on the screen</span><span>Same brightness scale throughout</span></div>
     <div class="plot-frame">
@@ -144,6 +167,7 @@ Both open → 0; one covered → 0.2418828.</div>
     </div>
   </details>
 
+  <p class="margin-note">First, poke holes in it. More knobs can wait.</p>
   <details data-critique>
     <summary>What could make this a bad activity?</summary>
     <div class="inspect-copy">
@@ -154,8 +178,6 @@ Both open → 0; one covered → 0.2418828.</div>
       <p class="quiet">This is a review sketch. Browser usability, child enjoyment, and learning have not been established.</p>
     </div>
   </details>
-
-  <footer><p class="quiet">A light experiment by <a href="https://github.com/tuckeefro" target="_blank" rel="noopener noreferrer">Tucker Vana</a>. Works offline.</p></footer>
 
   <script>
   (() => {

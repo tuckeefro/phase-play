@@ -64,10 +64,10 @@ jobs:
               if failed:
                   print(json.dumps(case, indent=2), flush=True)
               assert not failed, f"At {case['viewportWidth']}px, app checks failed: {failed}"
-          for name, width in [("desktop-direct", 1024), ("desktop-covered", 1024), ("narrow-open", 500)]:
+          for name, width, height in [("desktop-direct", 1024, 1800), ("desktop-covered", 1024, 1800), ("narrow-open", 500, 2400)]:
               data = Path(f"docs/browser/{name}.png").read_bytes()
               assert data[:8] == bytes([137, 80, 78, 71, 13, 10, 26, 10]), "Invalid PNG"
-              assert struct.unpack(">II", data[16:24]) == (width, 1200), "Unexpected PNG dimensions"
+              assert struct.unpack(">II", data[16:24]) == (width, height), "Unexpected PNG dimensions"
               assert len(data) > 10000, "Capture is unexpectedly small"
           print("Three app PNGs captured; every recorded browser check passes.")
           PY

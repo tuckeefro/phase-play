@@ -17,6 +17,9 @@ CHROMIUM = shutil.which(requested_browser) if requested_browser else (shutil.whi
 if not CHROMIUM:
     raise SystemExit("Chromium is required for this optional development check.")
 OUTPUT.mkdir(parents=True, exist_ok=True)
+# A failed capture must never leave an older report or PNG looking current.
+for filename in ("desktop-direct.png", "desktop-covered.png", "narrow-open.png", "results.json"):
+    (OUTPUT / filename).unlink(missing_ok=True)
 source = (ROOT / "index.html").read_text()
 
 DRIVER = r"""
@@ -92,12 +95,13 @@ class ResultParser(HTMLParser):
             self.parts.append(data)
 
 def browser(path, width, screenshot=None):
+    height = 2400 if width <= 480 else 1800
     with tempfile.TemporaryDirectory(prefix="phase-play-chromium-") as profile:
         args = [
             CHROMIUM, "--headless", "--disable-gpu", "--disable-background-networking",
             "--no-first-run", "--no-default-browser-check",
             "--host-resolver-rules=MAP * ~NOTFOUND",
-            "--user-data-dir=" + profile, "--window-size=" + str(max(500, width)) + ",1200",
+            "--user-data-dir=" + profile, "--window-size=" + str(max(500, width)) + "," + str(height),
             "--virtual-time-budget=1500", "--dump-dom",
         ]
         if screenshot:
@@ -132,6 +136,7 @@ with tempfile.TemporaryDirectory(prefix="phase-play-browser-test-") as directory
     if not direct_ran_script:
         raise RuntimeError("Unmodified file did not show the script-generated gradient and curve")
     for width, final_state, name in [(1024, "covered", "desktop-covered"), (320, "open", "narrow-open")]:
+        frame_height = 2400 if width <= 480 else 1800
         driver = DRIVER.replace("SCREENSHOT_STATE", json.dumps(final_state))
         instrumented = source.replace("</body>", "<script>" + driver + "</script></body>", 1)
         frame = escape(instrumented, quote=True)
@@ -140,7 +145,7 @@ with tempfile.TemporaryDirectory(prefix="phase-play-browser-test-") as directory
             '<pre id="browser-result" hidden></pre>'
             '<script>addEventListener("message",e=>{if(e.source===document.getElementById("app").contentWindow&&e.data.kind==="phase-play-browser-evidence")'
             'document.getElementById("browser-result").textContent=JSON.stringify(e.data.report);});</script>'
-            '<iframe id="app" width="' + str(width) + '" height="1200" srcdoc="' + frame + '"></iframe></body></html>'
+            '<iframe id="app" width="' + str(width) + '" height="' + str(frame_height) + '" srcdoc="' + frame + '"></iframe></body></html>'
         )
         path = directory / (name + ".html")
         path.write_text(harness)
