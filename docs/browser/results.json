@@ -1,8 +1,8 @@
 {
   "status": "checks_completed",
-  "recordedUTC": "2026-10-15T15:55:39.308112+00:00",
-  "browser": "Google Chrome 154.0.8037.97",
-  "sourceSHA256": "e916978d65d254a4feba533d7c26126f15930561e11520913b72bea568aeec01",
+  "recordedUTC": "2026-10-15T16:27:04.589964+00:00",
+  "browser": "Google Chrome 155.0.8059.39",
+  "sourceSHA256": "06dbeb6d31d1d80151f8eaa30bb7dc16b3778e20a312ec585529d5c4bf278316",
   "unmodifiedFileInitialRender": true,
   "networkCondition": "Fresh Chromium profile, background networking disabled, all network hostnames blocked in this process",
   "cases": [
@@ -41,21 +41,24 @@
       "criticalAxisLabels": [
         {
           "text": "\u221220 mm",
-          "fontPixels": 11.763411458333334,
-          "left": 167.68177795410156,
-          "right": 219.11927795410156
+          "fontPixels": 13,
+          "left": 164.921875,
+          "right": 221.828125,
+          "width": 56.90625
         },
         {
           "text": "Center",
-          "fontPixels": 11.763411458333334,
-          "left": 484.71875,
-          "right": 524.4351806640625
+          "fontPixels": 13,
+          "left": 482.6171875,
+          "right": 526.3828125,
+          "width": 43.765625
         },
         {
           "text": "+20 mm",
-          "fontPixels": 11.763411458333334,
-          "left": 789.8806762695312,
-          "right": 841.3181762695312
+          "fontPixels": 13,
+          "left": 787.15625,
+          "right": 844.0625,
+          "width": 56.90625
         }
       ],
       "controls": [
@@ -128,21 +131,24 @@
       "criticalAxisLabels": [
         {
           "text": "\u221220 mm",
-          "fontPixels": 3.6817057291666666,
-          "left": 47.09320831298828,
-          "right": 63.586219787597656
+          "fontPixels": 13,
+          "left": 26.671875,
+          "right": 83.578125,
+          "width": 56.90625
         },
         {
           "text": "Center",
-          "fontPixels": 3.6817057291666666,
-          "left": 146.3203125,
-          "right": 159.169189453125
+          "fontPixels": 13,
+          "left": 130.6171875,
+          "right": 174.3828125,
+          "width": 43.765625
         },
         {
           "text": "+20 mm",
-          "fontPixels": 3.6817057291666666,
-          "left": 241.8286590576172,
-          "right": 258.3216552734375
+          "fontPixels": 13,
+          "left": 221.40625,
+          "right": 278.3125,
+          "width": 56.90625
         }
       ],
       "controls": [
@@ -175,7 +181,7 @@
         "resetState": true,
         "predictionSelected": true,
         "explanationOpened": true,
-        "readableAxisLabels": false,
+        "readableAxisLabels": true,
         "noHorizontalOverflow": true
       },
       "screenshot": "docs/browser/narrow-open.png"
