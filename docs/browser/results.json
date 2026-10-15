@@ -1,0 +1,10 @@
+{
+  "status": "browser_process_failed",
+  "recordedUTC": "2026-10-14T23:17:20.053757+00:00",
+  "browser": "Chromium 155.0.8059.39 built on Debian GNU/Linux 13 (trixie)",
+  "sourceSHA256": "0ebfee36a254f66ae1e5677d00f1154e63ab9586cb623ac369fbdb98b7ae3d0c",
+  "exitCode": -5,
+  "diagnostic": "/usr/bin/chromium: 9: [: 16788303872: unexpected operator\n[94:94:1014/171720.050016:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:45] setsockopt: Operation not permitted (1)\n",
+  "applicationChecksCompleted": false,
+  "validScreenshotsProduced": false
+}

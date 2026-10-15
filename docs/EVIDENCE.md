@@ -50,17 +50,46 @@ has one embedded script, and references no external runtime assets.
 **Limit:** this is static packaging and simulated state evidence. A real browser
 must still establish rendering, keyboard/touch operation, and offline use.
 
-## E04: Does the surprise teach a transferable relationship?
+## E04: Is our proposed learning check actually a new prediction?
 
-**Question:** after seeing the marked stripe brighten, can a learner predict
-that covering the slit dims the center?
+**Source observation:** after the first cover action, the app already shows
+the center at 25% and states that it dimmed. Asking about the same center on the
+next trial can be answered by remembering that display.
 
-**Evidence:** none from learners yet. The center prompt is a proposed check,
-not an observed learning outcome.
+**Decision:** treat the center prompt as a comparison and explanation prompt.
+It does not by itself establish transfer to an unseen case.
 
-**Next observation:** record the prediction before the second cover trial and
-where coaching is needed. Use that result to revise the activity before adding
-controls or missions.
+**Next observation:** ask the learner to explain why the two spots changed in
+opposite directions, without supplying the explanation first. For a transfer
+check, prepare a separate before-only pattern with a reviewed, different slit
+separation and ask for a prediction before revealing its covered-slit result.
+Do not add controls or claim learning effectiveness based on a repeated result.
+
+**Evidence from learners:** none yet.
+
+## E05: Can the saved project run its checks outside the conversation fixture?
+
+**Observed:** native Git 2.47.3 completed git fsck --full without an error.
+Native Node.js v20.19.2 completed tools/verify.mjs successfully. The aperture,
+Fresnel, input-validation, DOM-fixture, state-restoration, and static packaging
+checks passed in that execution.
+
+**Limit:** these are command-line and simulated-state observations. They do
+not establish browser operation or learning.
+
+## E06: Did we obtain real browser evidence?
+
+**Attempt:** run an unmodified local index.html in isolated headless Chromium,
+then exercise the same app HTML in 1,024-pixel and 320-pixel frames. Use a new
+temporary profile and block network hostnames for the browser process.
+
+**Observed:** Chromium was denied a socket operation at startup in this
+execution environment. No application checks completed and no valid screenshot
+was obtained.
+
+**Decision:** preserve the optional checker and its process-failure diagnostic.
+Re-run it in an environment that permits Chromium. Do not treat the failed
+launch as an application failure or claim a browser pass from the DOM fixture.
 
 ## Next evidence to collect
 

@@ -41,6 +41,18 @@ transitions in a DOM fixture. That fixture does not provide browser rendering
 or accessibility evidence. [Saved results](docs/verification.json) identify
 the source and distributed file by SHA-256.
 
+An optional Chromium check uses Python's standard library and an installed
+Chromium browser:
+
+    python3 tools/check-browser.py
+
+It opens the unmodified file directly, exercises controls in controlled-width
+frames containing the same app HTML, and saves results and screenshots under
+docs/browser. It uses a fresh temporary browser profile with network hostnames
+blocked. This execution environment denied Chromium startup; no browser pass
+or valid screenshot is claimed. A failed process is recorded separately from
+application assertions.
+
 ## Physics
 
 This is classical scalar wave optics with equal finite-width rectangular
