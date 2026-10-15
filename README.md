@@ -64,11 +64,4 @@ The underlying effect is established physics. The activity, explanation,
 implementation, and reproducible checks are the work being evaluated here.
 See [the model](docs/MODEL.md) for the equations and limits.
 
-## Contributions
-
-Tucker chose the double-slit direction, the standalone requirement, the two
-audiences, and the requirement to criticize the approaches first.
-
-Codex proposed this opening activity and drafted the implementation,
-explanations, and verification code. Tucker's review of this draft and
-independent learner and technical reviews are pending.
+*Built with assistance from Codex.*
