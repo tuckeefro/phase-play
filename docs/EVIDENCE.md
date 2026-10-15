@@ -48,7 +48,7 @@ with the distributed HTML. Reject nonfinite model inputs and invalid states.
 has one embedded script, and references no external runtime assets.
 
 **Limit:** static packaging and simulated state cannot establish browser
-rendering or physical input behavior. E07 records subsequent browser observations.
+rendering or physical input behavior. E07 and E08 record subsequent browser observations.
 
 ## E04: Is our proposed learning check actually a new prediction?
 
@@ -67,7 +67,7 @@ Do not add controls or claim learning effectiveness based on a repeated result.
 
 **Evidence from learners:** none yet.
 
-## E05: Can the saved project run its checks outside the conversation fixture?
+## E05: Do the project checks run as ordinary commands?
 
 **Observed:** native Git 2.47.3 completed git fsck --full without an error.
 Native Node.js v20.19.2 completed tools/verify.mjs successfully. The aperture,
@@ -91,16 +91,16 @@ GitHub's Ubuntu runner, using a fresh profile and blocked network hostnames.
 Load the unmodified local index.html, then exercise the same app HTML in
 1,024-pixel and 320-pixel frames with an added diagnostic driver.
 The [capture run](https://github.com/tuckeefro/phase-play/actions/runs/38674719813)
-records the execution; [results.json](browser/results.json) identifies the
+records the execution; [results.json](https://github.com/tuckeefro/phase-play/blob/e3cd5a8b90eae1b7b8aec00d20557b24e0379196/docs/browser/results.json) identifies the
 browser and exact HTML source by SHA-256.
 
-**Observed:** the [opening view](browser/desktop-direct.png) and
-[covered-slit result](browser/desktop-covered.png) are real 1,024 × 1,200 PNG
+**Observed:** the [opening view](https://github.com/tuckeefro/phase-play/blob/e3cd5a8b90eae1b7b8aec00d20557b24e0379196/docs/browser/desktop-direct.png) and
+[covered-slit result](https://github.com/tuckeefro/phase-play/blob/e3cd5a8b90eae1b7b8aec00d20557b24e0379196/docs/browser/desktop-covered.png) are real 1,024 × 1,200 PNG
 captures. The desktop case passes all recorded checks: initial values,
 prediction selection, cover/reopen, reset, explanation opening, readable
 axis labels, and no horizontal overflow.
 
-The [320-pixel frame](browser/narrow-open.png) passes those control checks
+The [320-pixel frame](https://github.com/tuckeefro/phase-play/blob/e3cd5a8b90eae1b7b8aec00d20557b24e0379196/docs/browser/narrow-open.png) passes those control checks
 and has no horizontal overflow, but its plot-axis labels render at about
 3.68 pixels. They fail the 10.5-pixel minimum readability check.
 
@@ -111,9 +111,57 @@ plot labels as a layout defect to fix and re-capture.
 These captures do not establish physical keyboard or touch operation, other
 browser behavior, child enjoyment, learning, or agreement with a real device.
 
+## E08: Readable labels and the workshop notebook
+
+**Change:** define “slit” before the first prediction, show the parts in a setup
+sketch, and put the plain-language result beside the cover action. The selected
+visual direction is a workshop notebook: paper, ink, measurement readouts, and
+notes about what to hold fixed and what to question.
+
+**Phone fix:** keep the graph 220 pixels tall and put its labels in ordinary page
+text. The labels no longer shrink with the SVG. Check that all three labels are
+present, at least 12 pixels, and inside the plot panel; an empty label list cannot
+pass. Visual inspection also caught crowded Left/Right labels on the barrier.
+Their spacing was corrected and captured again.
+
+**Method:** the [checked build and capture run](https://github.com/tuckeefro/phase-play/actions/runs/38770526403)
+ran the standalone build, the numerical/state/packaging verifier, and the browser
+checker with Google Chrome 155.0.8059.39. The unmodified local HTML rendered
+with network hostnames blocked. Controlled-width frames then exercised the same
+HTML with a diagnostic driver.
+
+The [browser report](https://github.com/tuckeefro/phase-play/blob/bb8e37fa4d3aee9ceae6262373b40e525a224239/docs/browser/results.json)
+and [numerical report](https://github.com/tuckeefro/phase-play/blob/bb8e37fa4d3aee9ceae6262373b40e525a224239/docs/verification.json)
+identify the same standalone HTML:
+
+```text
+c21267880972e3db783bfd014099ce5ffca60f23dc3f7e6232e45de37b27ba41
+```
+
+**Observed:** all eight recorded browser checks pass at 1,024 and 320 pixels:
+initial values, cover, reopen, reset, prediction selection, explanation opening,
+axis-label readability, and no horizontal overflow. All three horizontal-axis
+labels measure 13 CSS pixels in both cases. The marked spot still changes from
+0.0% to 24.2%; the center changes from 100.0% to 25.0%.
+
+The [opening](https://github.com/tuckeefro/phase-play/blob/bb8e37fa4d3aee9ceae6262373b40e525a224239/docs/browser/desktop-direct.png) and
+[covered-slit](https://github.com/tuckeefro/phase-play/blob/bb8e37fa4d3aee9ceae6262373b40e525a224239/docs/browser/desktop-covered.png)
+PNGs are 1,024 × 1,800. The [narrow PNG](https://github.com/tuckeefro/phase-play/blob/bb8e37fa4d3aee9ceae6262373b40e525a224239/docs/browser/narrow-open.png)
+is a 500 × 2,400 outer capture containing the 320-pixel app frame.
+
+**Capture failures:** two attempts timed out while asking Chrome for its version,
+before opening the app. After the repeated [timeout](https://github.com/tuckeefro/phase-play/actions/runs/38770332486),
+that deadline increased from 5 to 15 seconds; the final run passed. Capture
+startup clears older generated files, and publication requires every recorded
+check to pass.
+
+**Limit:** scripted clicks establish the recorded state transitions. Physical
+keyboard, pointer, and touch operation, other browsers, and uncoached learner use
+remain untested. The numerical verifier's “unverified” list describes what that
+script alone cannot establish; browser observations are recorded separately here.
+
 ## Next evidence to collect
 
 - Physical keyboard, pointer, and touch use with networking disabled.
-- Readable plot labels in the narrow-screen capture.
 - A learner's new prediction and any confusing instructions.
 - A technical reader's reproduced result and objections to the model.

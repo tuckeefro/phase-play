@@ -45,8 +45,8 @@ with its decisions and failures left visible.
 
 ## Poke holes in it
 
-The numerical and packaged-source checks pass. The updated browser captures
-are being checked on the review branch before this pass reaches main.
+The numerical, packaged-source, and recorded Chrome checks pass. Graph labels
+measure 13 pixels at both tested widths, including the 320-pixel phone layout.
 No learner trial has been recorded.
 
 The next question is whether someone can explain why the two spots changed
