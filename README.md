@@ -6,6 +6,16 @@ Make a prediction about a dark stripe, cover one slit, and compare what happens
 there with what happens at the bright center. Open the explanation to inspect
 the model, its assumptions, and a case where the approximation stops working.
 
+## Preview
+
+**Both slits open**
+
+![Both slits open: the marked stripe is dark and the bright center reads 100%.](docs/browser/desktop-direct.png)
+
+**Right slit covered**
+
+![Right slit covered: the marked spot rises to 24.2% while the center falls to 25%, using the same brightness reference.](docs/browser/desktop-covered.png)
+
 ## Run it
 
 Download or clone this repository and open **index.html** in a browser.
@@ -17,9 +27,11 @@ runtime installation, internet connection, or paid hosting.
 This is the first activity sketch. The first milestone is to challenge the
 physics and teaching approach before adding more features.
 
-The scalar calculations and simulated control-state checks pass. Actual
-browser operation, offline operation in a browser, child enjoyment, learning,
-and an independent human physics review are still unverified.
+The scalar calculations and simulated control-state checks pass. The browser
+check also captured the app and exercised controls in Chrome with network
+hostnames blocked. At 320 pixels, plot-axis labels are too small. Physical
+keyboard/touch operation, child enjoyment, learning, and an independent human
+physics review remain unverified.
 
 See [the evidence log](docs/EVIDENCE.md) for what was observed and what each
 check establishes. [The review](docs/REVIEW.md) records the failure cases and
@@ -41,17 +53,20 @@ transitions in a DOM fixture. That fixture does not provide browser rendering
 or accessibility evidence. [Saved results](docs/verification.json) identify
 the source and distributed file by SHA-256.
 
-An optional Chromium check uses Python's standard library and an installed
-Chromium browser:
+An optional browser check uses Python's standard library and an installed
+Chromium or Google Chrome browser:
 
     python3 tools/check-browser.py
 
 It opens the unmodified file directly, exercises controls in controlled-width
 frames containing the same app HTML, and saves results and screenshots under
 docs/browser. It uses a fresh temporary browser profile with network hostnames
-blocked. This execution environment denied Chromium startup; no browser pass
-or valid screenshot is claimed. A failed process is recorded separately from
-application assertions.
+blocked. The [saved browser results](docs/browser/results.json) record the
+browser version, source hash, control checks, and measured layout. The current
+320-pixel case fails the axis-label readability check.
+
+The [PNG capture workflow](.github/workflows/previews.yml) uses Google Chrome
+and commits the images and report to docs/browser when the app or checker changes.
 
 ## Physics
 

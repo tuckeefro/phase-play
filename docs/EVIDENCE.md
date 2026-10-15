@@ -91,9 +91,36 @@ was obtained.
 Re-run it in an environment that permits Chromium. Do not treat the failed
 launch as an application failure or claim a browser pass from the DOM fixture.
 
+## E07: Captured previews and a narrow-screen failure
+
+**Method:** run tools/check-browser.py with Google Chrome 155.0.8059.39 on
+GitHub's Ubuntu runner, using a fresh profile and blocked network hostnames.
+Load the unmodified local index.html, then exercise the same app HTML in
+1,024-pixel and 320-pixel frames with an added diagnostic driver.
+The [capture run](https://github.com/tuckeefro/phase-play/actions/runs/38674719813)
+records the execution; [results.json](browser/results.json) identifies the
+browser and exact HTML source by SHA-256.
+
+**Observed:** the [opening view](browser/desktop-direct.png) and
+[covered-slit result](browser/desktop-covered.png) are real 1,024 × 1,200 PNG
+captures. The desktop case passes all recorded checks: initial values,
+prediction selection, cover/reopen, reset, explanation opening, readable
+axis labels, and no horizontal overflow.
+
+The [320-pixel frame](browser/narrow-open.png) passes those control checks
+and has no horizontal overflow, but its plot-axis labels render at about
+3.68 pixels. They fail the 10.5-pixel minimum readability check.
+
+**Decision:** publish the two desktop views in the README. Record the narrow
+plot labels as a layout defect to fix and re-capture.
+
+**Limit:** controls were activated programmatically on native DOM elements.
+These captures do not establish physical keyboard or touch operation, other
+browser behavior, child enjoyment, learning, or agreement with a real device.
+
 ## Next evidence to collect
 
-- Actual browser use of the distributed file, with networking disabled.
-- A screenshot or recording of the actual rendered activity.
+- Physical keyboard, pointer, and touch use with networking disabled.
+- Readable plot labels in the narrow-screen capture.
 - A learner's new prediction and any confusing instructions.
 - A technical reader's reproduced result and objections to the model.
