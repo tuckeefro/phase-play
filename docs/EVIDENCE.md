@@ -160,12 +160,6 @@ keyboard, pointer, and touch operation, other browsers, and uncoached learner us
 remain untested. The numerical verifier's “unverified” list describes what that
 script alone cannot establish; browser observations are recorded separately here.
 
-## Next evidence to collect
-
-- Physical keyboard, pointer, and touch use with networking disabled.
-- A learner's new prediction and any confusing instructions.
-- A technical reader's reproduced result and objections to the model.
-
 ## E09: Author metadata and the web copy
 
 The HTML title now starts with Tucker Vana, and the README connects the author
@@ -192,3 +186,9 @@ measure 13 CSS pixels, and the controlled app frames record no HTTP resources.
 The optics and interactive program are unchanged. Public hosting is configured
 separately through the owner's Pages settings; indexing and search position are
 not established by these program checks.
+
+## Next evidence to collect
+
+- Physical keyboard, pointer, and touch use with networking disabled.
+- A learner's new prediction and any confusing instructions.
+- A technical reader's reproduced result and objections to the model.
