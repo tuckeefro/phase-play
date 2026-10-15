@@ -5,13 +5,15 @@ from pathlib import Path
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "docs" / "browser"
-CHROMIUM = shutil.which("chromium") or shutil.which("google-chrome")
+requested_browser = os.environ.get("PHASE_PLAY_BROWSER")
+CHROMIUM = shutil.which(requested_browser) if requested_browser else (shutil.which("chromium") or shutil.which("google-chrome"))
 if not CHROMIUM:
     raise SystemExit("Chromium is required for this optional development check.")
 OUTPUT.mkdir(parents=True, exist_ok=True)
@@ -99,7 +101,10 @@ def browser(path, width, screenshot=None):
         args.append(path.as_uri())
         result = subprocess.run(args, text=True, capture_output=True, timeout=25)
         if result.returncode:
-            diagnostic = result.stderr[-2000:].replace(profile, "<temporary-profile>")
+            diagnostic = result.stderr
+            if len(diagnostic) > 4000:
+                diagnostic = diagnostic[:2000] + "\n... diagnostic truncated ...\n" + diagnostic[-2000:]
+            diagnostic = diagnostic.replace(profile, "<temporary-profile>")
             blocked = {
                 "status": "browser_process_failed",
                 "recordedUTC": datetime.now(timezone.utc).isoformat(),

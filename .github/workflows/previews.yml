@@ -27,6 +27,8 @@ jobs:
       - name: Capture the app and record browser checks
         id: browser
         continue-on-error: true
+        env:
+          PHASE_PLAY_BROWSER: google-chrome
         run: |
           python3 -c "import shutil; print({name: shutil.which(name) for name in ('chromium', 'google-chrome')})"
           python3 tools/check-browser.py
