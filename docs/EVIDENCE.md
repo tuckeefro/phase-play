@@ -165,3 +165,30 @@ script alone cannot establish; browser observations are recorded separately here
 - Physical keyboard, pointer, and touch use with networking disabled.
 - A learner's new prediction and any confusing instructions.
 - A technical reader's reproduced result and objections to the model.
+
+## E09: Author metadata and the web copy
+
+The HTML title now starts with Tucker Vana, and the README connects the author
+to his engineering portfolio and public APS presentation record. Embedded author
+metadata and the repository citation identify the same person and project.
+
+The public-copy metadata uses `https://tuckeefro.github.io/phase-play/`.
+The standalone program still uses local CSS, SVG, and JavaScript. The canonical
+link and structured data describe the web copy; they load no runtime assets.
+The packaging guard continues to reject external scripts, stylesheets, and
+event-bearing link tags.
+
+The [checked build and capture run](https://github.com/tuckeefro/phase-play/actions/runs/38776229625)
+passed the numerical, state, packaging, and recorded browser checks.
+The [browser report](https://github.com/tuckeefro/phase-play/blob/04374e6a1cf264a2db50215eb65e84e06224e280/docs/browser/results.json)
+identifies this HTML:
+
+```text
+aa4c23e05f3cfbff69ddb312f9da7654fa3309694efa06017e2dd8d871e6fdd2
+```
+
+At 320 and 1,024 pixels, all eight recorded browser checks pass. Axis labels
+measure 13 CSS pixels, and the controlled app frames record no HTTP resources.
+The optics and interactive program are unchanged. Public hosting is configured
+separately through the owner's Pages settings; indexing and search position are
+not established by these program checks.
