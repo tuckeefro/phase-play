@@ -1,8 +1,8 @@
 {
   "status": "checks_completed",
-  "recordedUTC": "2026-10-15T16:27:04.589964+00:00",
+  "recordedUTC": "2026-10-15T16:33:46.879936+00:00",
   "browser": "Google Chrome 155.0.8059.39",
-  "sourceSHA256": "06dbeb6d31d1d80151f8eaa30bb7dc16b3778e20a312ec585529d5c4bf278316",
+  "sourceSHA256": "9a650277cce5cf14fefcc000e09b8ac31f3efe0942e8fda544d5dabac45b9253",
   "unmodifiedFileInitialRender": true,
   "networkCondition": "Fresh Chromium profile, background networking disabled, all network hostnames blocked in this process",
   "cases": [
@@ -42,22 +42,22 @@
         {
           "text": "\u221220 mm",
           "fontPixels": 13,
-          "left": 164.921875,
-          "right": 221.828125,
+          "left": 172.421875,
+          "right": 229.328125,
           "width": 56.90625
         },
         {
           "text": "Center",
           "fontPixels": 13,
-          "left": 482.6171875,
-          "right": 526.3828125,
+          "left": 490.1171875,
+          "right": 533.8828125,
           "width": 43.765625
         },
         {
           "text": "+20 mm",
           "fontPixels": 13,
-          "left": 787.15625,
-          "right": 844.0625,
+          "left": 794.65625,
+          "right": 851.5625,
           "width": 56.90625
         }
       ],
@@ -132,22 +132,22 @@
         {
           "text": "\u221220 mm",
           "fontPixels": 13,
-          "left": 26.671875,
-          "right": 83.578125,
+          "left": 28.109375,
+          "right": 85.015625,
           "width": 56.90625
         },
         {
           "text": "Center",
           "fontPixels": 13,
-          "left": 130.6171875,
-          "right": 174.3828125,
+          "left": 138.1171875,
+          "right": 181.8828125,
           "width": 43.765625
         },
         {
           "text": "+20 mm",
           "fontPixels": 13,
-          "left": 221.40625,
-          "right": 278.3125,
+          "left": 234.96875,
+          "right": 291.875,
           "width": 56.90625
         }
       ],
