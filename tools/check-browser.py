@@ -127,7 +127,7 @@ def browser(path, width, screenshot=None):
             raise RuntimeError("Chromium startup failed; diagnostic saved in docs/browser/results.json")
         return result.stdout
 
-version = subprocess.run([CHROMIUM, "--version"], text=True, capture_output=True, check=True, timeout=5).stdout.strip()
+version = subprocess.run([CHROMIUM, "--version"], text=True, capture_output=True, check=True, timeout=15).stdout.strip()
 cases = []
 with tempfile.TemporaryDirectory(prefix="phase-play-browser-test-") as directory:
     directory = Path(directory)
