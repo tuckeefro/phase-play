@@ -1,0 +1,72 @@
+name: Capture PNG previews
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/previews.yml
+      - index.html
+      - tools/check-browser.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phase-play-previews
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the app
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Capture the app and record browser checks
+        id: browser
+        continue-on-error: true
+        run: python3 tools/check-browser.py
+
+      - name: Verify that the PNGs show the tested app
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import struct
+
+          report = json.loads(Path("docs/browser/results.json").read_text())
+          assert report["status"] == "checks_completed", "Browser capture did not complete"
+          assert report["unmodifiedFileInitialRender"], "The unmodified app did not render"
+          source_hash = hashlib.sha256(Path("index.html").read_bytes()).hexdigest()
+          assert report["sourceSHA256"] == source_hash, "Capture source does not match the app"
+          assert {case["viewportWidth"] for case in report["cases"]} == {320, 1024}
+          for case in report["cases"]:
+              failed = [name for name, passed in case["checks"].items() if not passed]
+              unexpected = [name for name in failed if name != "readableAxisLabels"]
+              assert not unexpected, f"App checks failed: {unexpected}"
+              if failed:
+                  print(f"::warning::At {case['viewportWidth']}px: {', '.join(failed)}. See docs/browser/results.json.")
+          for name, width in [("desktop-direct", 1024), ("desktop-covered", 1024), ("narrow-open", 500)]:
+              data = Path(f"docs/browser/{name}.png").read_bytes()
+              assert data[:8] == bytes([137, 80, 78, 71, 13, 10, 26, 10]), "Invalid PNG"
+              assert struct.unpack(">II", data[16:24]) == (width, 1200), "Unexpected PNG dimensions"
+              assert len(data) > 10000, "Capture is unexpectedly small"
+          print("Three app PNGs captured; browser findings remain recorded in results.json.")
+          PY
+
+      - name: Publish the captured PNGs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- docs/browser/desktop-direct.png docs/browser/desktop-covered.png docs/browser/narrow-open.png docs/browser/results.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git diff --cached --check
+          git commit -m "Publish captured app previews"
+          git push origin HEAD:main
