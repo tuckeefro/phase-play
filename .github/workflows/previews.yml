@@ -1,3 +1,4 @@
+# Refresh the unchanged app's captures for the human-readability review.
 name: Capture PNG previews
 
 on:
