@@ -1,10 +1,189 @@
 {
-  "status": "browser_process_failed",
-  "recordedUTC": "2026-10-14T23:17:20.053757+00:00",
-  "browser": "Chromium 155.0.8059.39 built on Debian GNU/Linux 13 (trixie)",
-  "sourceSHA256": "0ebfee36a254f66ae1e5677d00f1154e63ab9586cb623ac369fbdb98b7ae3d0c",
-  "exitCode": -5,
-  "diagnostic": "/usr/bin/chromium: 9: [: 16788303872: unexpected operator\n[94:94:1014/171720.050016:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:45] setsockopt: Operation not permitted (1)\n",
-  "applicationChecksCompleted": false,
-  "validScreenshotsProduced": false
+  "status": "checks_completed",
+  "recordedUTC": "2026-10-15T03:08:54.747670+00:00",
+  "browser": "Google Chrome 155.0.8059.39",
+  "sourceSHA256": "e916978d65d254a4feba533d7c26126f15930561e11520913b72bea568aeec01",
+  "unmodifiedFileInitialRender": true,
+  "networkCondition": "Fresh Chromium profile, background networking disabled, all network hostnames blocked in this process",
+  "cases": [
+    {
+      "viewportWidth": 1024,
+      "sourceContext": "Exact app HTML in a local srcdoc frame; only the diagnostic driver is added",
+      "initial": {
+        "target": "0.0%",
+        "center": "100.0%",
+        "coverVisible": false,
+        "resultVisible": false
+      },
+      "covered": {
+        "target": "24.2%",
+        "center": "25.0%",
+        "coverVisible": true,
+        "resultVisible": true
+      },
+      "reopened": {
+        "target": "0.0%",
+        "center": "100.0%",
+        "coverVisible": false,
+        "resultVisible": true
+      },
+      "reset": {
+        "target": "0.0%",
+        "center": "100.0%",
+        "coverVisible": false,
+        "resultVisible": false
+      },
+      "predictionSelected": true,
+      "guessesCleared": true,
+      "explanationOpened": true,
+      "gradientStops": 641,
+      "horizontalOverflow": false,
+      "criticalAxisLabels": [
+        {
+          "text": "\u221220 mm",
+          "fontPixels": 11.763411458333334,
+          "left": 167.68177795410156,
+          "right": 219.11927795410156
+        },
+        {
+          "text": "Center",
+          "fontPixels": 11.763411458333334,
+          "left": 484.71875,
+          "right": 524.4351806640625
+        },
+        {
+          "text": "+20 mm",
+          "fontPixels": 11.763411458333334,
+          "left": 789.8806762695312,
+          "right": 841.3181762695312
+        }
+      ],
+      "controls": [
+        {
+          "text": "It stays dark",
+          "height": 44
+        },
+        {
+          "text": "It gets brighter",
+          "height": 44
+        },
+        {
+          "text": "Not sure yet",
+          "height": 44
+        },
+        {
+          "text": "Open the right slit",
+          "height": 44
+        },
+        {
+          "text": "Start over",
+          "height": 44
+        }
+      ],
+      "httpResources": [],
+      "checks": {
+        "initialValues": true,
+        "coverValues": true,
+        "reopenValues": true,
+        "resetState": true,
+        "predictionSelected": true,
+        "explanationOpened": true,
+        "readableAxisLabels": true,
+        "noHorizontalOverflow": true
+      },
+      "screenshot": "docs/browser/desktop-covered.png"
+    },
+    {
+      "viewportWidth": 320,
+      "sourceContext": "Exact app HTML in a local srcdoc frame; only the diagnostic driver is added",
+      "initial": {
+        "target": "0.0%",
+        "center": "100.0%",
+        "coverVisible": false,
+        "resultVisible": false
+      },
+      "covered": {
+        "target": "24.2%",
+        "center": "25.0%",
+        "coverVisible": true,
+        "resultVisible": true
+      },
+      "reopened": {
+        "target": "0.0%",
+        "center": "100.0%",
+        "coverVisible": false,
+        "resultVisible": true
+      },
+      "reset": {
+        "target": "0.0%",
+        "center": "100.0%",
+        "coverVisible": false,
+        "resultVisible": false
+      },
+      "predictionSelected": true,
+      "guessesCleared": true,
+      "explanationOpened": true,
+      "gradientStops": 641,
+      "horizontalOverflow": false,
+      "criticalAxisLabels": [
+        {
+          "text": "\u221220 mm",
+          "fontPixels": 3.6817057291666666,
+          "left": 47.09320831298828,
+          "right": 63.586219787597656
+        },
+        {
+          "text": "Center",
+          "fontPixels": 3.6817057291666666,
+          "left": 146.3203125,
+          "right": 159.169189453125
+        },
+        {
+          "text": "+20 mm",
+          "fontPixels": 3.6817057291666666,
+          "left": 241.8286590576172,
+          "right": 258.3216552734375
+        }
+      ],
+      "controls": [
+        {
+          "text": "It stays dark",
+          "height": 44
+        },
+        {
+          "text": "It gets brighter",
+          "height": 44
+        },
+        {
+          "text": "Not sure yet",
+          "height": 44
+        },
+        {
+          "text": "Cover the right slit",
+          "height": 44
+        },
+        {
+          "text": "Start over",
+          "height": 44
+        }
+      ],
+      "httpResources": [],
+      "checks": {
+        "initialValues": true,
+        "coverValues": true,
+        "reopenValues": true,
+        "resetState": true,
+        "predictionSelected": true,
+        "explanationOpened": true,
+        "readableAxisLabels": false,
+        "noHorizontalOverflow": true
+      },
+      "screenshot": "docs/browser/narrow-open.png"
+    }
+  ],
+  "limitations": [
+    "Control checks activate native DOM elements programmatically; physical pointer, keyboard and touch operation are not established.",
+    "The controlled-width cases embed exact app HTML in a local srcdoc frame with an added diagnostic driver.",
+    "This is one Chromium version and does not establish other browsers, child enjoyment or learning."
+  ]
 }
