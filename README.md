@@ -1,90 +1,74 @@
-# Phase Play
+# Tucker Vana — Phase Play
 
-**Can covering a slit make a dark stripe brighter?**
+**Can covering one opening make a dark spot brighter?**
 
-An offline double-slit light experiment by [Tucker Vana](https://github.com/tuckeefro).
-
-Light goes through two narrow openings and makes bright and dark stripes on a
-screen. Those openings are called slits. Make a guess, cover one, and watch the
-marked stripe and the center. Same light source. Same brightness scale.
+A standalone double-slit optics experiment. Make a guess, cover one opening,
+and compare the marked spot with the center. Same light source. Same brightness
+scale.
 
 I want a kid to mess with this and someone who knows optics to pick it apart.
-The first milestone is poking holes in it. More controls can wait.
+First, poke holes in it. More knobs can wait.
 
 ## Open it
 
 1. [Download the project ZIP](https://github.com/tuckeefro/phase-play/archive/refs/heads/main.zip) and extract it.
 2. Open **index.html** in a browser.
 
-You can keep just that HTML file. Everything the experiment needs is inside it:
-no account, local server, installation, or hosting bill. It works offline.
+You can keep just that HTML file. The experiment runs offline with no account,
+server, or installation. Its explanation and model are included.
 
-## Preview
+## See what changes
 
-**Both slits open**
+**Both openings clear**
 
-![Both slits open: the marked stripe is dark and the bright center reads 100%.](docs/browser/desktop-direct.png)
+![Phase Play by Tucker Vana: both slits open, with a dark marked stripe and the center at 100%.](docs/browser/desktop-direct.png)
 
-**Right slit covered**
+**One opening covered**
 
-![Right slit covered: the marked spot rises to 24.2% while the center falls to 25%, using the same brightness reference.](docs/browser/desktop-covered.png)
+![Covering the right slit raises the marked spot to 24.2% and lowers the center to 25%, on the same brightness scale.](docs/browser/desktop-covered.png)
 
 [Phone view](docs/browser/narrow-open.png)
 
-## Decisions worth checking
-
-My thing is getting hardware and software to work together: equipment
-integration, troubleshooting, and testing. Here, the work is a small simulation
-with its decisions and failures left visible.
+## Decisions you can check
 
 | Question | Decision and evidence |
 | --- | --- |
-| Is the display making up the surprise? | Keep the brightness reference fixed. Check both conditions against a separate calculation across the openings. [Calculation and limits](docs/EVIDENCE.md#e01-does-the-opening-surprise-follow-from-the-field-calculation). |
-| Can we put the screen anywhere? | Keep it at 2 m. At 1 cm, the far-field model disagrees substantially with a Fresnel calculation. [Comparison](docs/EVIDENCE.md#e02-can-we-move-the-screen-closer-and-keep-the-same-formula). |
-| Does fitting on a phone mean someone can read it? | The first capture had 3.68-pixel graph labels. Labels now use ordinary page text, and the browser check measures their size and visibility. [Current browser measurements](docs/browser/results.json). |
+| Is the display inventing the surprise? | Keep the brightness reference fixed. Compare both states with a separate calculation across the openings. [Calculation and limits](docs/EVIDENCE.md#e01-does-the-opening-surprise-follow-from-the-field-calculation). |
+| Does the formula work at any screen distance? | Keep the screen at 2 m. At 1 cm, the far-field model disagrees substantially with a Fresnel calculation. [The failed approximation](docs/EVIDENCE.md#e02-can-we-move-the-screen-closer-and-keep-the-same-formula). |
+| Can someone read it on a phone? | The first capture had 3.68-pixel graph labels. Moving them out of the scaled graphic brought them to 13 pixels at both tested widths. [Browser measurements](docs/browser/results.json). |
 
-## Poke holes in it
+This is a classical scalar wave simulation using finite-width slits and
+Fraunhofer diffraction. [Equations and assumptions](docs/MODEL.md) ·
+[Evidence log](docs/EVIDENCE.md)
 
-The numerical, packaged-source, and recorded Chrome checks pass. Graph labels
-measure 13 pixels at both tested widths, including the 320-pixel phone layout.
-No learner trial has been recorded.
+The numerical, packaged-file, and recorded Chrome checks pass. A learner trial,
+physical input checks, and independent human physics review remain open.
+[What could fool us next](docs/REVIEW.md)
 
-The next question is whether someone can explain why the two spots changed
-in opposite directions. Clicking the button or remembering a number won't
-tell us that.
+## About Tucker Vana
 
-[What could fool us, and how to catch it](docs/REVIEW.md) ·
-[What was checked and what remains open](docs/EVIDENCE.md)
+I work across hardware and software: equipment integration, troubleshooting,
+and testing. [My engineering work and background](https://github.com/tuckeefro/career-portfolio)
+include production startup, CNC equipment, and cryogenic hardware.
 
-## The physics
+The APS record lists me as presenter and coauthor of
+[Scalable Flexible Coaxial Ribbon Cables for High-Density Quantum Wiring (Part II)](https://meetings-archive.aps.org/mar/2023/q72/5/)
+at the 2023 March Meeting.
 
-The app uses classical scalar Fraunhofer diffraction for two equal,
-finite-width slits with coherent illumination and matched polarization.
-Intensity uses the original two-slit bright center as a fixed reference.
+## Reproduce the checks
 
-[Equations, assumptions, and where the approximation breaks](docs/MODEL.md)
-
-## Work on it
-
-Edit **src/challenge.html**, then rebuild **index.html**. These optional
-development commands use Node.js with no third-party dependencies:
+These are optional development commands. Using the experiment only needs a browser.
 
 ```bash
 node tools/build.mjs
 node tools/verify.mjs
-```
-
-[Saved numerical results](docs/verification.json) identify the checked source.
-
-Browser checks and PNG captures use Python's standard library and an installed
-Chromium or Google Chrome browser:
-
-```bash
 python3 tools/check-browser.py
 ```
 
-The [capture workflow](.github/workflows/previews.yml) checks the standalone
-build and calculations, tests the controls, measures graph labels at 320 and
-1,024 pixels, and regenerates the PNGs. Every recorded browser check must pass.
+Node checks use no third-party packages. Browser checks use Python's standard
+library and an installed Chromium or Google Chrome browser.
+[Saved numerical results](docs/verification.json) identify the checked source.
+The [capture workflow](.github/workflows/previews.yml) rebuilds the file,
+runs the checks, and publishes the PNGs.
 
 *Built with assistance from Codex.*

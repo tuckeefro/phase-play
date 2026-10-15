@@ -1,0 +1,15 @@
+{
+  "cff-version": "1.2.0",
+  "message": "If you use Phase Play, please cite this repository.",
+  "type": "software",
+  "title": "Phase Play: a double-slit optics experiment",
+  "authors": [
+    {
+      "family-names": "Vana",
+      "given-names": "Tucker",
+      "website": "https://github.com/tuckeefro"
+    }
+  ],
+  "repository-code": "https://github.com/tuckeefro/phase-play",
+  "url": "https://tuckeefro.github.io/phase-play/"
+}

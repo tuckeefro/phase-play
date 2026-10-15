@@ -176,7 +176,9 @@ assert.ok(standalone.startsWith('<!doctype html>'));
 assert.ok(standalone.includes(fragment));
 assert.equal((standalone.match(/<script>/g) ?? []).length,1);
 assert.equal((standalone.match(/id="slit-cover-review"/g) ?? []).length,1);
-assert.equal(/<script\b[^>]*\bsrc=|<link\b|<img\b|<iframe\b|<object\b/i.test(standalone),false);
+// Canonical metadata describes the web copy and loads no runtime asset.
+const runtimeMarkup=standalone.replace(/<link\s+rel="canonical"\s+href="https:\/\/[^"]+"\s*\/?>/gi,'');
+assert.equal(/<script\b[^>]*\bsrc=|<link\b|<img\b|<iframe\b|<object\b/i.test(runtimeMarkup),false);
 assert.equal(/\bfetch\s*\(|XMLHttpRequest|WebSocket|import\s*\(|url\(["']?https?:\/\//.test(script),false);
 
 export const report={
